@@ -257,6 +257,7 @@
                 <!--</execution>-->
                 <!--</executions>-->
                 <configuration>
+                    <skip>true</skip>
                     <!--<forkMode>once</forkMode>-->
                     <!--<forkCount>0</forkCount>-->
                     <!--<argLine>-Dfile.encoding=UTF-8</argLine>-->

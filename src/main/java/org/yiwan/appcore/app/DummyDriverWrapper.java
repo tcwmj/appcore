@@ -47,8 +47,8 @@ public class DummyDriverWrapper implements IAppiumDriverWrapper {
     }
 
     @Override
-    public IAppiumDriverWrapper maximize() {
-        return this;
+    public WebDriver.Options manage() {
+        return null;
     }
 
     @Override
@@ -301,23 +301,8 @@ public class DummyDriverWrapper implements IAppiumDriverWrapper {
             }
 
             @Override
-            public void performSwipeForward() {
-                
-            }
-
-            @Override
-            public void performSwipeBackward() {
-
-            }
-
-            @Override
-            public void performSwipeDownward() {
-
-            }
-
-            @Override
-            public void performSwipeUpward() {
-
+            public ISwipeDirection performSwipe() {
+                return null;
             }
 
             @Override

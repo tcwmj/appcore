@@ -1,16 +1,11 @@
 package org.yiwan.appcore.test;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.yiwan.appcore.app.AppiumDriverWrapperFactory;
 import org.yiwan.appcore.app.IAppiumDriverWrapper;
 import org.yiwan.appcore.test.pojo.AndroidCapabilities;
-
-import java.util.concurrent.TimeUnit;
 
 public class Demo {
     private final static Logger logger = LoggerFactory.getLogger(Demo.class);
@@ -21,7 +16,7 @@ public class Demo {
 
         try {
             driver.waitThat().timeout(2000);
-            driver.actions().performSwipeForward();
+            driver.actions().performSwipe().forward();
             driver.waitThat().timeout(2000);
 
 //            driver.findElement(By.id("com.youdao.note:id/try_now")).click();

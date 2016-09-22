@@ -544,75 +544,8 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
         }
 
         @Override
-        public void performSwipeForward() {
-            //Get the size of screen.
-            Dimension size = driver.manage().window().getSize();
-
-            //Find swipe start and end point from screen's with and height.
-            //Find startx point which is at right side of screen.
-            int startx = (int) (size.width * 0.70);
-            //Find endx point which is at left side of screen.
-            int endx = (int) (size.width * 0.30);
-            //Find vertical point where you wants to swipe. It is in middle of screen height.
-            int starty = size.height / 2;
-            logger.debug("startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
-
-            //Swipe from Right to Left.
-            driver.swipe(startx, starty, endx, starty, 3000);
-        }
-
-        @Override
-        public void performSwipeBackward() {
-            //Get the size of screen.
-            Dimension size = driver.manage().window().getSize();
-
-            //Find swipe start and end point from screen's with and height.
-            //Find startx point which is at right side of screen.
-            int startx = (int) (size.width * 0.70);
-            //Find endx point which is at left side of screen.
-            int endx = (int) (size.width * 0.30);
-            //Find vertical point where you wants to swipe. It is in middle of screen height.
-            int starty = size.height / 2;
-            logger.debug("startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
-
-            //Swipe from Left to Right.
-            driver.swipe(endx, starty, startx, starty, 3000);
-        }
-
-        @Override
-        public void performSwipeDownward() {
-            //Get the size of screen.
-            Dimension size = driver.manage().window().getSize();
-
-            //Find swipe start and end point from screen's with and height.
-            //Find starty point which is at bottom side of screen.
-            int starty = (int) (size.height * 0.80);
-            //Find endy point which is at top side of screen.
-            int endy = (int) (size.height * 0.20);
-            //Find horizontal point where you wants to swipe. It is in middle of screen width.
-            int startx = size.width / 2;
-            logger.debug("starty = " + starty + " ,endy = " + endy + " , startx = " + startx);
-
-            //Swipe from Bottom to Top.
-            driver.swipe(startx, starty, startx, endy, 3000);
-        }
-
-        @Override
-        public void performSwipeUpward() {
-            //Get the size of screen.
-            Dimension size = driver.manage().window().getSize();
-
-            //Find swipe start and end point from screen's with and height.
-            //Find starty point which is at bottom side of screen.
-            int starty = (int) (size.height * 0.80);
-            //Find endy point which is at top side of screen.
-            int endy = (int) (size.height * 0.20);
-            //Find horizontal point where you wants to swipe. It is in middle of screen width.
-            int startx = size.width / 2;
-            logger.debug("starty = " + starty + " ,endy = " + endy + " , startx = " + startx);
-
-            //Swipe from Top to Bottom.
-            driver.swipe(startx, endy, startx, starty, 3000);
+        public ISwipeDirection performSwipe() {
+            return new SwipeDirection();
         }
 
         @Override
@@ -633,6 +566,71 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
         @Override
         public void performZoom(Locator locator) {
 
+        }
+    }
+
+    private class SwipeDirection implements ISwipeDirection {
+        private int startx;
+        private int starty;
+        private int endx;
+        private int endy;
+
+        private void setHorizental() {
+            //Get the size of screen.
+            Dimension size = driver.manage().window().getSize();
+
+            //Find swipe start and end point from screen's with and height.
+            //Find startx point which is at right side of screen.
+            int startx = (int) (size.width * 0.70);
+            //Find endx point which is at left side of screen.
+            int endx = (int) (size.width * 0.30);
+            //Find vertical point where you wants to swipe. It is in middle of screen height.
+            int starty = size.height / 2;
+        }
+
+        private void setVertical() {
+            //Get the size of screen.
+            Dimension size = driver.manage().window().getSize();
+
+            //Find swipe start and end point from screen's with and height.
+            //Find starty point which is at bottom side of screen.
+            int starty = (int) (size.height * 0.80);
+            //Find endy point which is at top side of screen.
+            int endy = (int) (size.height * 0.20);
+            //Find horizontal point where you wants to swipe. It is in middle of screen width.
+            int startx = size.width / 2;
+        }
+
+        @Override
+        public void forward() {
+            setHorizental();
+            logger.debug("swiping startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
+            //Swipe from Right to Left.
+            driver.swipe(startx, starty, endx, starty, 3000);
+        }
+
+        @Override
+        public void backward() {
+            setHorizental();
+            logger.debug("swiping startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
+            //Swipe from Left to Right.
+            driver.swipe(endx, starty, startx, starty, 3000);
+        }
+
+        @Override
+        public void downward() {
+            setVertical();
+            logger.debug("swipping starty = " + starty + " ,endy = " + endy + " , startx = " + startx);
+            //Swipe from Bottom to Top.
+            driver.swipe(startx, starty, startx, endy, 3000);
+        }
+
+        @Override
+        public void upward() {
+            setVertical();
+            logger.debug("swipping starty = " + starty + " ,endy = " + endy + " , startx = " + startx);
+            //Swipe from Top to Bottom.
+            driver.swipe(startx, endy, startx, starty, 3000);
         }
     }
 

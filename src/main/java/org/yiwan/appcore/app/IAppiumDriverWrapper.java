@@ -184,13 +184,7 @@ public interface IAppiumDriverWrapper {
 
         void performSwipe(int startx, int starty, int endx, int endy, int duration);
 
-        void performSwipeForward();
-
-        void performSwipeBackward();
-
-        void performSwipeDownward();
-
-        void performSwipeUpward();
+        ISwipeDirection performSwipe();
 
         void performTap(int fingers, int x, int y, int duration);
 
@@ -199,6 +193,16 @@ public interface IAppiumDriverWrapper {
         void performZoom(int x, int y);
 
         void performZoom(Locator locator);
+    }
+
+    interface ISwipeDirection {
+        void forward();
+
+        void backward();
+
+        void downward();
+
+        void upward();
     }
 
     interface IAlertWrapper {
