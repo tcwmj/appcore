@@ -212,124 +212,128 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
 
     @Override
     public IAppiumDriverWrapper closeApp() {
-        return null;
+        driver.closeApp();
+        return this;
     }
 
     @Override
     public Map<String, String> getAppStringMap() {
-        return null;
+        return driver.getAppStringMap();
     }
 
     @Override
     public Map<String, String> getAppStringMap(String language) {
-        return null;
+        return driver.getAppStringMap(language);
     }
 
     @Override
     public Map<String, String> getAppStringMap(String language, String stringFile) {
-        return null;
+        return driver.getAppStringMap(language, stringFile);
     }
 
     @Override
     public String getContext() {
-        return null;
+        return driver.getContext();
     }
 
     @Override
     public Set<String> getContextHandles() {
-        return null;
+        return driver.getContextHandles();
     }
 
     @Override
     public String getDeviceTime() {
-        return null;
+        return driver.getDeviceTime();
     }
 
     @Override
     public ExecuteMethod getExecuteMethod() {
-        return null;
+        return driver.getExecuteMethod();
     }
 
     @Override
     public ScreenOrientation getOrientation() {
-        return null;
+        return driver.getOrientation();
     }
 
     @Override
     public URL getRemoteAddress() {
-        return null;
+        return driver.getRemoteAddress();
     }
 
     @Override
     public JsonObject getSettings() {
-        return null;
+        return driver.getSettings();
     }
 
     @Override
     public IAppiumDriverWrapper hideKeyboard() {
-        return null;
+        driver.hideKeyboard();
+        return this;
     }
 
     @Override
     public IAppiumDriverWrapper installApp(String appPath) {
-        return null;
+        driver.installApp(appPath);
+        return this;
     }
 
     @Override
     public boolean isAppInstalled(String bundleId) {
-        return false;
+        return driver.isAppInstalled(bundleId);
     }
 
     @Override
     public IAppiumDriverWrapper launchApp() {
-        return null;
+        driver.launchApp();
+        return this;
     }
 
     @Override
     public Location location() {
-        return null;
+        return driver.location();
     }
 
     @Override
     public byte[] pullFile(String remotePath) {
-        return new byte[0];
+        return driver.pullFile(remotePath);
     }
 
     @Override
     public byte[] pullFolder(String remotePath) {
-        return new byte[0];
+        return driver.pullFolder(remotePath);
     }
 
     @Override
     public void removeApp(String bundleId) {
-
+        driver.removeApp(bundleId);
     }
 
     @Override
     public void resetApp() {
-
+        driver.resetApp();
     }
 
     @Override
     public void rotate(ScreenOrientation orientation) {
-
+        driver.rotate(orientation);
     }
 
     @Override
     public void runAppInBackground(int seconds) {
-
+        driver.runAppInBackground(seconds);
     }
 
     @Override
     public void setLocation(Location location) {
-
+        driver.setLocation(location);
     }
 
     public IAppiumDriverWrapper doPostAction() {
-        if (!alert().isPresent()) {
-            waitThat().document().toBeReady();
-            waitThat().jQuery().toBeInactive();
-        }
+//        if (!alert().isPresent()) {
+//            waitThat().document().toBeReady();
+//            waitThat().jQuery().toBeInactive();
+//        }
         return this;
     }
 
@@ -581,11 +585,11 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
 
             //Find swipe start and end point from screen's with and height.
             //Find startx point which is at right side of screen.
-            int startx = (int) (size.width * 0.70);
+            startx = (int) (size.width * 0.70);
             //Find endx point which is at left side of screen.
-            int endx = (int) (size.width * 0.30);
+            endx = (int) (size.width * 0.30);
             //Find vertical point where you wants to swipe. It is in middle of screen height.
-            int starty = size.height / 2;
+            starty = size.height / 2;
         }
 
         private void setVertical() {
@@ -594,17 +598,17 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
 
             //Find swipe start and end point from screen's with and height.
             //Find starty point which is at bottom side of screen.
-            int starty = (int) (size.height * 0.80);
+            starty = (int) (size.height * 0.80);
             //Find endy point which is at top side of screen.
-            int endy = (int) (size.height * 0.20);
+            endy = (int) (size.height * 0.20);
             //Find horizontal point where you wants to swipe. It is in middle of screen width.
-            int startx = size.width / 2;
+            startx = size.width / 2;
         }
 
         @Override
         public void forward() {
             setHorizental();
-            logger.debug("swiping startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
+            logger.debug("swiping startx = {}, endx = {}, starty = {}", startx, endx, starty);
             //Swipe from Right to Left.
             driver.swipe(startx, starty, endx, starty, 3000);
         }
@@ -612,7 +616,7 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
         @Override
         public void backward() {
             setHorizental();
-            logger.debug("swiping startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
+            logger.debug("swiping startx = {}, endx = {}, starty = {}", startx, endx, starty);
             //Swipe from Left to Right.
             driver.swipe(endx, starty, startx, starty, 3000);
         }
@@ -620,7 +624,7 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
         @Override
         public void downward() {
             setVertical();
-            logger.debug("swipping starty = " + starty + " ,endy = " + endy + " , startx = " + startx);
+            logger.debug("swiping starty = {}, endy = {}, startx = {}", starty, endy, startx);
             //Swipe from Bottom to Top.
             driver.swipe(startx, starty, startx, endy, 3000);
         }
@@ -628,7 +632,7 @@ public class AppiumDriverWrapper implements IAppiumDriverWrapper {
         @Override
         public void upward() {
             setVertical();
-            logger.debug("swipping starty = " + starty + " ,endy = " + endy + " , startx = " + startx);
+            logger.debug("swiping starty = {}, endy = {}, startx = {}", starty, endy, startx);
             //Swipe from Top to Bottom.
             driver.swipe(startx, endy, startx, starty, 3000);
         }

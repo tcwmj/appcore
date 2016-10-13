@@ -38,11 +38,7 @@ public class AppiumDriverWrapperFactory {
     }
 
     public IAppiumDriverWrapper create() {
-        if (PropHelper.DUMMY_TEST) {
-            return new DummyDriverWrapper();
-        } else {
-            return createAppiumDriverWrapper();
-        }
+        return PropHelper.DUMMY_TEST ? new DummyDriverWrapper() : createAppiumDriverWrapper();
     }
 
     private IAppiumDriverWrapper createAppiumDriverWrapper() {

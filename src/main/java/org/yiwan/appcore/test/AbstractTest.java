@@ -346,7 +346,6 @@ public abstract class AbstractTest implements ITest {
         report(String.format("test environment<br/>%s", getTestEnvironment()));
         createProxyWrapper();//create proxyWrapper must before creating appiumDriverWrapper
         createAppiumDriverWrapper();//create appiumDriverWrapper
-        appiumDriverWrapper.deleteAllCookies();
         report(Helper.getTestReportStyle("../../" + PropHelper.LOG_FOLDER + MDC.get(PropHelper.DISCRIMINATOR_KEY), "open test execution log"));
         if (PropHelper.ENABLE_TRANSACTION_TIMESTAMP_RECORD) {
             timestampWriter.write(this);
