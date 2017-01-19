@@ -14,7 +14,7 @@ public class IOSCapabilities extends AppiumCapabilities {
     private Boolean locationServicesAuthorized;
     private Boolean autoAcceptAlerts;
     private Boolean autoDismissAlerts;
-    private Boolean nativeInstrumentsLib;
+    private Boolean nativeInsprocessArgumentstrumentsLib;
     private Boolean nativeWebTap;
     private String safariInitialUrl;
     private Boolean safariAllowPopups;
